@@ -65,10 +65,10 @@ DIFFS1=`diff $SOURCEDIR/$TOKENFACTORYSOL $TOKENFACTORYSOL`
 echo "--- Differences $SOURCEDIR/$TOKENFACTORYSOL $TOKENFACTORYSOL ---" | tee -a $TEST1OUTPUT
 echo "$DIFFS1" | tee -a $TEST1OUTPUT
 
-solc_0.4.18 --version | tee -a $TEST1OUTPUT
+solc --version | tee -a $TEST1OUTPUT
 
-echo "var tokenFactoryOutput=`solc_0.4.18 --optimize --pretty-json --combined-json abi,bin,interface $TOKENFACTORYSOL`;" > $TOKENFACTORYJS
-echo "var testOutput=`solc_0.4.18 --optimize --pretty-json --combined-json abi,bin,interface $TESTSOL`;" > $TESTJS
+echo "var tokenFactoryOutput=`solc --optimize --pretty-json --combined-json abi,bin,interface $TOKENFACTORYSOL`;" > $TOKENFACTORYJS
+echo "var testOutput=`solc --optimize --pretty-json --combined-json abi,bin,interface $TESTSOL`;" > $TESTJS
 
 geth --verbosity 3 attach $GETHATTACHPOINT << EOF | tee -a $TEST1OUTPUT
 loadScript("$TOKENFACTORYJS");
